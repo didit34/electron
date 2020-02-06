@@ -66,6 +66,7 @@ WebContentsView::WebContentsView(v8::Isolate* isolate,
 }
 
 WebContentsView::~WebContentsView() {
+  LOG(ERROR) << "~WebContentsView: " << Browser::Get()->is_shutting_down();
   if (api_web_contents_) {  // destroy() is called
     // Destroy WebContents asynchronously unless app is shutting down,
     // because destroy() might be called inside WebContents's event handler.

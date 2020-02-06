@@ -578,6 +578,7 @@ void WebContents::InitWithSessionAndOptions(
 }
 
 WebContents::~WebContents() {
+  LOG(ERROR) << "~WebContents";
   // The destroy() is called.
   if (managed_web_contents()) {
     managed_web_contents()->GetView()->SetDelegate(nullptr);
@@ -608,6 +609,7 @@ WebContents::~WebContents() {
 }
 
 void WebContents::DestroyWebContents(bool async) {
+  LOG(ERROR) << "DestroyWebContents: " << async;
   // This event is only for internal use, which is emitted when WebContents is
   // being destroyed.
   Emit("will-destroy");
@@ -1307,6 +1309,7 @@ bool WebContents::OnMessageReceived(const IPC::Message& message) {
 // we need to make sure the api::WebContents is also deleted.
 // For #4, the WebContents will be destroyed by embedder.
 void WebContents::WebContentsDestroyed() {
+  LOG(ERROR) << "WebContents::WebContentsDestroyed: " << managed_web_contents();
   // Cleanup relationships with other parts.
   RemoveFromWeakMap();
 

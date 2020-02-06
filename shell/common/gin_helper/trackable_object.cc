@@ -48,6 +48,7 @@ base::OnceClosure TrackableObjectBase::GetDestroyClosure() {
 }
 
 void TrackableObjectBase::Destroy() {
+  LOG(ERROR) << "Destroy";
   delete this;
 }
 
